@@ -33,6 +33,6 @@ El servicio utiliza Redis para almacenar el porcentaje que se aplica a los cálc
 alli se encuentran los Endpoints Disponibles
 
 ### covertura 
-Una vez realizado el buind ingresar a esta ruta
+Una vez realizado el build ingresar a esta ruta
 calculadoraapi/build/reports/tests/test/index.html
 ![img.png](img.png)
