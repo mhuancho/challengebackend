@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  title: Calculadora API
+  description: Esta API expone puntos finales para administrar Calculadora API.
+  contact:
+    name: Mateo Huancho
+    email: mhuanchom@gmail.com
+  version: '1.0'
+servers:
+  - url: http://localhost:4500/calculadora-api
+    description: En desarrollo
+paths:
+  /api/calculo:
+    post:
+      tags:
+        - calculo-controller
+      operationId: calcular
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculoRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /external-api/porcentaje:
+    get:
+      tags:
+        - external-porcentaje-controller
+      operationId: getPorcentaje
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: number
+                format: double
+  /api/historial:
+    get:
+      tags:
+        - historial-controller
+      operationId: listarHistorial
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    CalculoRequestDto:
+      type: object
+      properties:
+        num1:
+          type: number
+          format: double
+        num2:
+          type: number
+          format: double
+    ApiResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/ApiResponseMeta'
+        data:
+          type: object
+    ApiResponseMeta:
+      type: object
+      properties:
+        result:
+          type: string
+        cantidadRegistros:
+          type: integer
+          format: int32
+        cantidadRegistrosTotal:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        mensajes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mensaje'
+        atributos:
+          type: object
+          additionalProperties:
+            type: object
+    Mensaje:
+      type: object
+      properties:
+        codigo:
+          type: string
+        tipo:
+          type: string
+        message:
+          type: string

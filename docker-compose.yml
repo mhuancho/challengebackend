@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: calculadora_huancho
+    environment:
+      POSTGRES_USER: huancho
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: calculadora_db
+    ports:
+      - "5432:5432"
+    networks:
+      - calculadora_huancho
+
+  redis:
+    image: redis:latest
+    container_name: redis_calculadora
+    ports:
+      - "6379:6379"
+    networks:
+      - calculadora_huancho
+  app:
+    image: mhuancho/challengebackend:latest
+    container_name: calculadora_app
+    ports:
+      - "8080:8080"
+    networks:
+      - calculadora_huancho
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/calculadora_db
+      SPRING_DATASOURCE_USERNAME: huancho
+      SPRING_DATASOURCE_PASSWORD: 123
+
+networks:
+  calculadora_huancho:
+    driver: bridge

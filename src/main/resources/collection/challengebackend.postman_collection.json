@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "7411d881-d3e5-49cb-80fe-25cac43363eb",
+		"name": "challengebackend",
+		"description": "Desarrollar una API REST en Spring Boot (Java 21)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4862869"
+	},
+	"item": [
+		{
+			"name": "listar-historial",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/calculadora-api/api/historial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculadora-api",
+						"api",
+						"historial"
+					]
+				},
+				"description": "Historial de llamadas (fecha, endpoint, parámetros, respuesta/error, con  \npaginación y registro asíncrono)."
+			},
+			"response": []
+		},
+		{
+			"name": "calcular",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"num1\": 100,\r\n  \"num2\": 222\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculadora-api/api/calculo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculadora-api",
+						"api",
+						"calculo"
+					]
+				},
+				"description": "Cálculo con porcentaje dinámico (suma + porcentaje del servicio externo o  \ncaché)."
+			},
+			"response": []
+		},
+		{
+			"name": "servicio-externo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/calculadora-api/external-api/porcentaje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculadora-api",
+						"external-api",
+						"porcentaje"
+					]
+				},
+				"description": "servicio externo que trae el porcentaje fijo"
+			},
+			"response": []
+		}
+	]
+}
